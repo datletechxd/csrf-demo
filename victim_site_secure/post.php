@@ -9,7 +9,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 include 'db_config.php';
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    
+    // Kiểm tra CSRF token
+    if(!isset($_POST["csrf_token"]) || $_POST["csrf_token"] !== $_SESSION["csrf_token"]) {
+        die("CSRF token không hợp lệ.");
+    }
+
     if(empty(trim($_POST["content"]))){
         header("location: index.php");
         exit;
@@ -20,9 +24,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $stmt->bind_param("is", $param_user_id, $param_content);
             
             $param_user_id = $_SESSION["id"];
-            $param_content = trim($_POST["content"]);
+            $param_content = htmlspecialchars(trim($_POST["content"])); // Chống XSS
             
             if($stmt->execute()){
+                // Reset CSRF token sau khi sử dụng
+                $_SESSION["csrf_token"] = bin2hex(random_bytes(32));
+                
                 header("location: index.php");
                 exit;
             } else{
