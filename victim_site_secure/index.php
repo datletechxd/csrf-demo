@@ -2,6 +2,11 @@
 session_start();
 include "db_config.php";
 
+// Tạo CSRF token nếu chưa có
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 $sql = "SELECT posts.content, posts.post_date, users.username 
         FROM posts 
         INNER JOIN users ON posts.user_id = users.id 
@@ -47,6 +52,7 @@ $result = $conn->query($sql);
                 <section class="post-form">
                     <h2>Đăng bài mới</h2>
                     <form action="post.php" method="post">
+                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                         <textarea name="content" placeholder="Nhập nội dung bài viết..." required></textarea>
                         <button type="submit" class="btn btn-submit">Đăng Bài</button>
                     </form>
