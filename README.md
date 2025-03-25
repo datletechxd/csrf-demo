@@ -22,9 +22,12 @@ This is a demo about Cross-Site Request Forgery (CSRF) attacks.
    http://localhost:8080/csrf-demo/
    ```
 
-## Description
+## Security Mechanism
 
-This repository demonstrates how a CSRF attack can occur and how to prevent it.
+This project contains two versions of a vulnerable website:
+
+- **victim_site/** (Vulnerable): This version does not have CSRF protection, making it possible to execute unauthorized requests using a crafted attack page.
+- **victim_site_secure/** (Secured): This version includes CSRF protection by implementing CSRF tokens.
 
 ## Contact
 
