@@ -6,7 +6,6 @@ This is a demo about Cross-Site Request Forgery (CSRF) attacks.
 
 - Install XAMPP
 - Run Apache and MySQL
-- Use port 8080 to run the application
 
 ## Installation and Running
 
@@ -19,7 +18,7 @@ This is a demo about Cross-Site Request Forgery (CSRF) attacks.
    ```
 4. **Access the web application**: Open a browser and visit:
    ```
-   http://localhost:8080/csrf-demo/
+   http://localhost:{port}/csrf-demo/
    ```
 
 ## Security Mechanism
