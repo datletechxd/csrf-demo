@@ -56,7 +56,7 @@
         document.getElementById('attack-button').addEventListener('click', function() {
             var form = document.createElement('form');
             form.method = 'POST';
-            form.action = 'http://localhost:8080/victim_site/post.php';
+            form.action = '../victim_site/post.php';
             form.style.display = 'none';
 
             var content = document.createElement('input');
@@ -78,7 +78,7 @@
         document.getElementById('attack-secure-button').addEventListener('click', function() {
             var form = document.createElement('form');
             form.method = 'POST';
-            form.action = 'http://localhost:8080/victim_site_secure/post.php';
+            form.action = '../victim_site_secure/post.php';
             form.style.display = 'none';
 
             var content = document.createElement('input');
